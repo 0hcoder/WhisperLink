@@ -4,12 +4,14 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const connectDb = require("./config/connect-db");
+const dotenv = require("dotenv");
+dotenv.config();
 connectDb();
 const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // Your frontend's origin
+    origin: process.env.CLIENT_URL, // Your frontend's origin
     credentials: true,
   })
 );

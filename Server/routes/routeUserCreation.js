@@ -5,6 +5,7 @@ const User = require("../models/User");
 
 
 
+
 const router = express.Router();
 
 // Registration route
@@ -26,7 +27,9 @@ router.post("/users/register", async (req, res) => {
 
     console.log("User saved");
     
-    const token = jwt.sign({ id: user._id }, "suuuuuuuuuuuuuuuuuuuuuuu");
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
     console.log(token);
     
     res.cookie("token", token, { httpOnly: true });
@@ -41,7 +44,7 @@ router.post("/users/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (user && (await bcrypt.compare(password, user.password))) {
-    const token = jwt.sign({ id: user._id }, "suuuuuuuuuuuuuuuuuuuuuuu");
+    const token = jwt.sign({ id: user._id }, "");
     res.cookie("token", token, { httpOnly: true });
 
     console.log(user);
