@@ -8,10 +8,9 @@ import  { Toaster } from "react-hot-toast";
 import NavBar from './components/Navbar.jsx'
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+ 
     <Provider store={store}>
       <App />
       <Toaster />
     </Provider>
-  </StrictMode>
 );

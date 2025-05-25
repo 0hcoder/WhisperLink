@@ -5,7 +5,7 @@ import { loadMessData } from "../src/store/userMessgesSlice";
 export const loaduserMessData = async (dispatch) => {
 
   try {
-    const {data} = await axios.get("http://localhost:7000/api/getmess", {
+    const {data} = await axios.get("http://localhost:5000/api/getmess", {
       withCredentials: true,
     });
     

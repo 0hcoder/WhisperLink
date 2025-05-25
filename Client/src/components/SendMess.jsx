@@ -13,7 +13,7 @@ const SendMess = () => {
   }, []);
 
   const sendMessage = async (username, message) => {
-    await axios.post(`http://localhost:7000/api/send/${username}`, {
+    await axios.post(`http://localhost:5000/api/send/${username}`, {
       message,
     });
   };

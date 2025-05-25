@@ -3,18 +3,17 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import {userName} from "../store/userNameSlice"
+import { userName } from "../store/userNameSlice";
 
 async function registerUser(userData) {
   try {
     const response = await axios.post(
-      "http://localhost:7000/api/users/login",
+      "http://localhost:5000/api/users/login",
       userData,
       {
         withCredentials: true,
       }
     );
-   
 
     //
     return response.data;
@@ -49,12 +48,23 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userData = await registerUser(formData);
-   await dispatch(userName(userData.user));
+    await dispatch(userName(userData.user));
     toast.success("User logged in successfully");
-    setLocalStorage("Auth","success")
+
+
+    // Clear the form data after submission
+    setFormData({
+      email: "",
+      password: "",
+    });
+
+
+  
+  
+
+
     // Redirect to dashboard with user's name
     navigate(`/dashboard`);
-    
   };
 
   return (

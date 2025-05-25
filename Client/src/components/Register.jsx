@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 const registerUser = async (userData) => {
   const response = await axios.post(
-    "http://localhost:7000/api/users/register",
+    "http://localhost:5000/api/users/register",
     userData
   )
    return response;
@@ -27,7 +27,11 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     registerUser(formData);
-    console.log("Form Data Submitted:", formData);
+    setFormData({
+      username: "",
+      email: "",
+      password: "",
+    });
   };
 
   return (
